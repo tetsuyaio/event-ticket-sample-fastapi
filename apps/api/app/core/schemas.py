@@ -1,0 +1,21 @@
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict
+from pydantic.alias_generators import to_camel
+
+
+class ApiSchema(BaseModel):
+    model_config = ConfigDict(
+        alias_generator=to_camel,
+        populate_by_name=True,
+        from_attributes=True,
+        extra="forbid",
+    )
+
+
+class ErrorResponse(ApiSchema):
+    status_code: int
+    code: str
+    message: str
+    timestamp: datetime
+    path: str

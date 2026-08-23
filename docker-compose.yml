@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: event_ticket
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d event_ticket"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: ./apps/api
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@postgres:5432/event_ticket
+      JWT_SECRET: local-docker-development-secret-32bytes
+      CORS_ORIGINS: http://localhost:5173
+    command: sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+    volumes:
+      - ./apps/api/app:/app/app
+      - ./apps/api/alembic:/app/alembic
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  web:
+    image: node:22-alpine
+    working_dir: /workspace
+    command: sh -c "corepack enable && pnpm install --frozen-lockfile=false && pnpm --filter web dev --host 0.0.0.0"
+    environment:
+      VITE_API_URL: http://localhost:8000
+    volumes:
+      - .:/workspace
+      - pnpm_store:/root/.local/share/pnpm/store
+      - root_node_modules:/workspace/node_modules
+      - web_node_modules:/workspace/apps/web/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
+  pnpm_store:
+  root_node_modules:
+  web_node_modules:

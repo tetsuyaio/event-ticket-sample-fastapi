@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap');
+
+:root { font-family: 'DM Sans', sans-serif; color: #172022; background: #f5f4ef; font-synthesis: none; --ink: #172022; --paper: #fffefa; --accent: #e34d2f; --line: #d9d7ce; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; }
+a { color: inherit; text-underline-offset: 3px; }
+h1, h2 { font-family: Manrope, sans-serif; line-height: 1.12; }
+h1 { font-size: clamp(2rem, 5vw, 3.6rem); margin: .2rem 0 1rem; letter-spacing: -.05em; }
+h2 { letter-spacing: -.03em; }
+button, input, textarea, select { font: inherit; }
+button, .button { border: 1px solid var(--ink); padding: .72rem 1rem; cursor: pointer; display: inline-flex; justify-content: center; text-decoration: none; font-weight: 700; background: var(--paper); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+.primary { background: var(--accent); color: white; border-color: var(--accent); }
+.secondary { background: transparent; }
+.danger { border-color: #b52b24; color: #b52b24; }
+.wide { width: 100%; font-size: 1.05rem; padding: 1rem; }
+.header { height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 max(1.25rem, calc((100vw - 1120px) / 2)); border-bottom: 1px solid var(--line); background: rgba(245,244,239,.94); position: sticky; top: 0; z-index: 5; backdrop-filter: blur(8px); }
+.brand { font-family: Manrope; font-size: 1.2rem; font-weight: 800; text-decoration: none; }
+nav { display: flex; align-items: center; gap: 1.2rem; }
+nav a { text-decoration: none; font-weight: 600; }
+nav a.active { color: var(--accent); }
+.link-button { border: 0; padding: 0; background: none; font-weight: 500; }
+.container { max-width: 1120px; min-height: calc(100vh - 140px); margin: auto; padding: 4rem 1.25rem; }
+footer { border-top: 1px solid var(--line); text-align: center; padding: 1.5rem; color: #687073; font-size: .85rem; }
+.page-heading { display: flex; justify-content: space-between; align-items: end; margin-bottom: 2rem; }
+.eyebrow { text-transform: uppercase; letter-spacing: .18em; color: var(--accent); font-weight: 700; font-size: .8rem; }
+.muted, small { color: #697173; }
+.search { display: flex; max-width: 650px; margin-bottom: 2rem; }
+.search input { flex: 1; border-right: 0; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1rem; }
+.event-card, .reservation-card, .auth-card, .detail, .form-page { background: var(--paper); border: 1px solid var(--line); }
+.event-card { padding: 1.4rem; display: flex; flex-direction: column; }
+.event-card h2 { margin: 1.4rem 0 .5rem; }
+.event-card .button { margin-top: auto; }
+.card-top { display: flex; justify-content: space-between; font-size: .85rem; color: #687073; }
+.clamp { min-height: 3em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+dl div { margin-bottom: .8rem; }
+dt { color: #687073; font-size: .78rem; text-transform: uppercase; font-weight: 700; letter-spacing: .08em; }
+dd { margin: .15rem 0 0; }
+.badge { display: inline-block; width: fit-content; padding: .25rem .55rem; border-radius: 99px; background: #e5e5df; font-size: .72rem; font-weight: 700; letter-spacing: .04em; }
+.badge-published, .badge-reserved, .badge-valid { color: #166146; background: #d9eee4; }
+.badge-cancelled, .badge-closed { color: #812f2a; background: #f2deda; }
+.auth-card, .form-page { max-width: 610px; margin: 0 auto; padding: clamp(1.5rem, 5vw, 3rem); }
+form { display: grid; gap: 1rem; }
+label { display: grid; gap: .4rem; font-weight: 600; }
+input, textarea, select { width: 100%; padding: .8rem; border: 1px solid #aaa; border-radius: 0; background: white; }
+input:focus, textarea:focus, select:focus { outline: 3px solid #e34d2f33; border-color: var(--accent); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.error, .success, .notice, .empty { padding: 1rem; border: 1px solid; }
+.error { background: #f9e7e4; color: #8c2720; border-color: #e4aaa5; }
+.success { background: #e2f3e9; color: #16573e; border-color: #a3d3ba; display: flex; gap: .5rem; }
+.notice, .empty { border-color: var(--line); background: var(--paper); text-align: center; color: #687073; }
+.detail { padding: clamp(1.5rem, 5vw, 3.5rem); max-width: 900px; margin: auto; }
+.detail-header { display: grid; grid-template-columns: 1fr auto; gap: 2rem; margin: 2rem 0; }
+.detail-header aside { background: var(--ink); color: white; width: 170px; min-height: 160px; display: grid; place-content: center; text-align: center; }
+.detail-header aside strong { font-family: Manrope; font-size: 3.5rem; line-height: 1; }
+.lead { font-size: 1.1rem; line-height: 1.8; white-space: pre-wrap; }
+.detail-list { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1.5rem 0; margin: 2rem 0; }
+.reservation-list { display: grid; gap: 1rem; }
+.reservation-card { padding: 1.5rem; display: flex; justify-content: space-between; gap: 1rem; }
+.reservation-card h2 { margin: .75rem 0 .3rem; }
+.actions { display: flex; align-items: center; gap: .5rem; }
+.ticket-number { font-family: monospace; font-weight: 700; }
+.table-wrap { overflow-x: auto; background: var(--paper); border: 1px solid var(--line); }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 1rem; border-bottom: 1px solid var(--line); text-align: left; }
+th { color: #687073; font-size: .78rem; text-transform: uppercase; }
+td small { display: block; margin-top: .3rem; }
+
+@media (max-width: 720px) {
+  .header { height: auto; padding-top: 1rem; padding-bottom: 1rem; align-items: flex-start; }
+  nav { gap: .75rem; flex-wrap: wrap; justify-content: flex-end; font-size: .85rem; }
+  .container { padding-top: 2.5rem; }
+  .detail-header, .form-row { grid-template-columns: 1fr; }
+  .detail-header aside { width: 100%; min-height: 120px; }
+  .reservation-card, .page-heading { align-items: stretch; flex-direction: column; }
+  .actions { align-items: stretch; }
+}
